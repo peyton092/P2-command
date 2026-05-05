@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Job",
+  "description": "P2 Electrical Contracting — Job record schema",
+  "type": "object",
+  "required": ["job_id", "job_name", "status", "pm", "foreman", "start_date"],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "description": "Unique job identifier, e.g. P2-001",
+      "pattern": "^P2-\\d{3,4}$"
+    },
+    "job_name": { "type": "string" },
+    "address": { "type": "string" },
+    "gc_name": { "type": "string" },
+    "gc_contact_email": { "type": "string", "format": "email" },
+    "contract_amount": { "type": "number", "minimum": 0 },
+    "pm": { "type": "string" },
+    "foreman": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["Pre-Construction", "Active", "On Hold", "Complete", "Closed"]
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["Underground", "Rough-In", "Service", "Trim", "Final", "Punch", "Complete"]
+    },
+    "dates": {
+      "type": "object",
+      "properties": {
+        "start": { "type": "string", "format": "date" },
+        "rough_in_planned": { "type": "string", "format": "date" },
+        "rough_in_actual": { "type": "string", "format": "date" },
+        "trim_planned": { "type": "string", "format": "date" },
+        "trim_actual": { "type": "string", "format": "date" },
+        "final_planned": { "type": "string", "format": "date" },
+        "final_actual": { "type": "string", "format": "date" }
+      }
+    },
+    "billing": {
+      "type": "object",
+      "properties": {
+        "billed_to_date": { "type": "number", "minimum": 0 },
+        "collected_to_date": { "type": "number", "minimum": 0 },
+        "retention_held": { "type": "number", "minimum": 0 },
+        "retention_released": { "type": "boolean" }
+      }
+    },
+    "permit_number": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

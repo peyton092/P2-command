@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Invoice",
+  "description": "P2 Electrical Contracting — Invoice record schema",
+  "type": "object",
+  "required": ["invoice_id", "job_id", "amount", "date_sent", "status"],
+  "properties": {
+    "invoice_id": { "type": "string" },
+    "job_id": { "type": "string" },
+    "co_id": {
+      "type": "string",
+      "description": "If this invoice is for a change order"
+    },
+    "billing_phase": {
+      "type": "string",
+      "enum": ["Mobilization", "Underground", "Rough-In", "Service", "Trim", "Final", "Retention", "Change Order", "Other"]
+    },
+    "description": { "type": "string" },
+    "amount": { "type": "number", "minimum": 0 },
+    "date_sent": { "type": "string", "format": "date" },
+    "due_date": { "type": "string", "format": "date" },
+    "date_paid": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["Sent", "Paid", "Partial", "Overdue", "Disputed", "Void"]
+    },
+    "payment_method": { "type": "string" },
+    "sent_to": { "type": "string" },
+    "gc_po_number": { "type": "string" },
+    "days_outstanding": { "type": "integer" },
+    "notes": { "type": "string" }
+  }
+}

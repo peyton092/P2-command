@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Inspection",
+  "description": "P2 Electrical Contracting — Inspection record schema",
+  "type": "object",
+  "required": ["inspection_id", "job_id", "type", "scheduled_date", "result"],
+  "properties": {
+    "inspection_id": { "type": "string" },
+    "job_id": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["Underground", "Rough-In", "Service", "Trim", "Final", "Special"]
+    },
+    "scheduled_date": { "type": "string", "format": "date" },
+    "actual_date": { "type": "string", "format": "date" },
+    "result": {
+      "type": "string",
+      "enum": ["Pass", "Fail", "Partial Pass", "Pending", "Cancelled"]
+    },
+    "inspector_name": { "type": "string" },
+    "jurisdiction": { "type": "string" },
+    "permit_number": { "type": "string" },
+    "failed_items": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "reinspection_date": { "type": "string", "format": "date" },
+    "billing_triggered": { "type": "boolean" },
+    "foreman_present": { "type": "string" },
+    "photos_uploaded": { "type": "boolean" },
+    "notes": { "type": "string" }
+  }
+}

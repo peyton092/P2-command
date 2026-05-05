@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Change Order",
+  "description": "P2 Electrical Contracting — Change order record schema",
+  "type": "object",
+  "required": ["co_id", "job_id", "description", "amount", "status"],
+  "properties": {
+    "co_id": {
+      "type": "string",
+      "description": "e.g. CO-001",
+      "pattern": "^CO-\\d{3,4}$"
+    },
+    "job_id": { "type": "string" },
+    "date_identified": { "type": "string", "format": "date" },
+    "identified_by": { "type": "string" },
+    "description": { "type": "string" },
+    "reason": {
+      "type": "string",
+      "enum": ["Owner Directed", "GC Directed", "Code Requirement", "Unforeseen Condition", "Design Change"]
+    },
+    "labor_hours": { "type": "number", "minimum": 0 },
+    "labor_cost": { "type": "number", "minimum": 0 },
+    "material_cost": { "type": "number", "minimum": 0 },
+    "markup_percent": { "type": "number", "minimum": 0 },
+    "amount": { "type": "number", "minimum": 0 },
+    "status": {
+      "type": "string",
+      "enum": ["Identified", "Submitted", "Approved", "Rejected", "Invoiced", "Paid"]
+    },
+    "submitted_date": { "type": "string", "format": "date" },
+    "approved_date": { "type": "string", "format": "date" },
+    "approved_by": { "type": "string" },
+    "invoice_id": { "type": "string" },
+    "schedule_impact_days": { "type": "integer" },
+    "notes": { "type": "string" }
+  }
+}
