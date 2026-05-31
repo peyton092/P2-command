@@ -21,6 +21,7 @@ This repository is the operational command center for P2 Electrical Contracting.
 | `08-data-schemas/` | JSON schemas for jobs, crews, invoices, bids |
 | `09-archive/` | Deprecated processes |
 | `10-estimating-bid-pipeline/` | Bid tracker, follow-up SOP, win/loss log |
+| `bid-tracker-app/` | Live web app version of the bid tracker (Firebase) |
 
 ---
 

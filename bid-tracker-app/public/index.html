@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>P2 Bid Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== Login screen ===== -->
+  <section id="login-screen" class="login-screen hidden">
+    <div class="login-card">
+      <div class="brand">P2</div>
+      <h1>Bid Tracker</h1>
+      <p class="muted">P2 Electrical Contracting</p>
+      <form id="login-form">
+        <input id="login-email" type="email" placeholder="Email" autocomplete="username" required />
+        <input id="login-password" type="password" placeholder="Password" autocomplete="current-password" required />
+        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        <p id="login-error" class="error hidden"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== App ===== -->
+  <section id="app-screen" class="app-screen hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="brand-sm">P2</span>
+        <strong>Bid Tracker</strong>
+      </div>
+      <div class="topbar-right">
+        <span id="user-label" class="muted user-label"></span>
+        <button id="logout-btn" class="btn btn-ghost btn-sm">Sign Out</button>
+      </div>
+    </header>
+
+    <!-- Snapshot stats -->
+    <div id="stats" class="stats"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search bids…" />
+      <select id="stage-filter">
+        <option value="">All stages</option>
+      </select>
+      <button id="add-btn" class="btn btn-primary">+ New Bid</button>
+    </div>
+
+    <!-- Board -->
+    <main id="board" class="board"></main>
+    <p id="empty-state" class="empty hidden">No bids yet. Tap <strong>+ New Bid</strong> to add your first one.</p>
+  </section>
+
+  <!-- ===== Bid editor modal ===== -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="modal-title">New Bid</h2>
+        <button id="modal-close" class="btn btn-ghost btn-sm" aria-label="Close">✕</button>
+      </div>
+      <form id="bid-form" class="bid-form">
+        <input type="hidden" id="f-id" />
+
+        <label>Project Name
+          <input id="f-project" type="text" required />
+        </label>
+
+        <label>GC / Customer
+          <input id="f-gc" type="text" />
+        </label>
+
+        <div class="row">
+          <label>Type
+            <select id="f-type">
+              <option>New Construction</option>
+              <option>Renovation</option>
+              <option>Commercial</option>
+              <option>Residential</option>
+            </select>
+          </label>
+          <label>Bid $
+            <input id="f-amount" type="number" min="0" step="100" inputmode="decimal" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Stage
+            <select id="f-stage"></select>
+          </label>
+          <label>Estimator
+            <input id="f-estimator" type="text" />
+          </label>
+        </div>
+
+        <div class="row">
+          <label>Due Date
+            <input id="f-due" type="date" />
+          </label>
+          <label>Next Follow-Up
+            <input id="f-next" type="date" />
+          </label>
+        </div>
+
+        <!-- Outcome (shown for Won / Lost / No-Bid) -->
+        <div id="outcome-fields" class="outcome hidden">
+          <div class="row">
+            <label>Reason
+              <select id="f-reason">
+                <option value="">—</option>
+                <option>Price</option>
+                <option>Schedule</option>
+                <option>Relationship</option>
+                <option>Scope</option>
+                <option>Capacity</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Converted Job #
+              <input id="f-job" type="text" placeholder="P2-001" />
+            </label>
+          </div>
+        </div>
+
+        <label>Notes
+          <textarea id="f-notes" rows="2"></textarea>
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" id="delete-btn" class="btn btn-danger hidden">Delete</button>
+          <span class="spacer"></span>
+          <button type="button" id="cancel-btn" class="btn btn-ghost">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loading" class="loading">Loading…</div>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

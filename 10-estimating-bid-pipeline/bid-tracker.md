@@ -4,6 +4,8 @@ The single source of truth for every bid in the pipeline. If we're chasing the w
 
 **Updated:** [DATE] | **Reviewed:** Weekly (Owner + Estimator) at Monday Executive Review
 
+> 💻 **Live app version:** This same pipeline runs as a phone-friendly web app the whole team can log into. See `../bid-tracker-app/README.md` to deploy it on Firebase. The tables below are the paper/spreadsheet equivalent.
+
 ---
 
 ## Bid Stages
