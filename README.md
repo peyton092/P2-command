@@ -18,8 +18,9 @@ This repository is the operational command center for P2 Electrical Contracting.
 | `05-acquisition-integration/` | Due diligence, Day 1 plans, 30/60/90 |
 | `06-templates/` | Estimates, proposals, notices |
 | `07-ai-prompts/` | AI tools for dispatch, billing, field |
-| `08-data-schemas/` | JSON schemas for jobs, crews, invoices |
+| `08-data-schemas/` | JSON schemas for jobs, crews, invoices, bids |
 | `09-archive/` | Deprecated processes |
+| `10-estimating-bid-pipeline/` | Bid tracker, follow-up SOP, win/loss log |
 
 ---
 
@@ -30,3 +31,4 @@ This repository is the operational command center for P2 Electrical Contracting.
 3. No completed work sits unbilled past 48 hours.
 4. Every change order is documented before work begins.
 5. Weekly executive review happens every Monday.
+6. Every bid that goes out has a follow-up date — no sent bid goes dark.

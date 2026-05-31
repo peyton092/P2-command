@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bid",
+  "description": "P2 Electrical Contracting — Bid / estimate pipeline record schema",
+  "type": "object",
+  "required": ["bid_id", "project_name", "stage", "estimator"],
+  "properties": {
+    "bid_id": {
+      "type": "string",
+      "description": "Unique bid identifier, e.g. BID-001",
+      "pattern": "^BID-\\d{3,4}$"
+    },
+    "project_name": { "type": "string" },
+    "gc_name": { "type": "string" },
+    "gc_contact_email": { "type": "string", "format": "email" },
+    "project_type": {
+      "type": "string",
+      "enum": ["New Construction", "Renovation", "Commercial", "Residential"]
+    },
+    "bid_amount": { "type": "number", "minimum": 0 },
+    "stage": {
+      "type": "string",
+      "description": "Latest stage reached in the pipeline",
+      "enum": ["Lead", "Pricing", "Priced", "Made", "Sent", "Followed Up", "Won", "Lost", "No-Bid"]
+    },
+    "estimator": { "type": "string" },
+    "dates": {
+      "type": "object",
+      "properties": {
+        "received": { "type": "string", "format": "date" },
+        "priced": { "type": "string", "format": "date" },
+        "made": { "type": "string", "format": "date" },
+        "sent": { "type": "string", "format": "date" },
+        "due": { "type": "string", "format": "date" },
+        "last_followup": { "type": "string", "format": "date" },
+        "next_followup": { "type": "string", "format": "date" },
+        "decided": { "type": "string", "format": "date" }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": ["Won", "Lost", "No-Bid"]
+        },
+        "reason_code": {
+          "type": "string",
+          "enum": ["Price", "Schedule", "Relationship", "Scope", "Capacity", "Other"]
+        },
+        "reason_notes": { "type": "string" },
+        "won_by": { "type": "string", "description": "Competitor who won, if lost" },
+        "converted_job_id": {
+          "type": "string",
+          "description": "Job # created when bid is Won, e.g. P2-001",
+          "pattern": "^P2-\\d{3,4}$"
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}
